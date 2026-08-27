@@ -1,0 +1,433 @@
+{% extends "base.html" %}
+
+{% block title %}Classic Art Archive — Official Social Vault & Ultra HD Gallery{% endblock %}
+
+{% block content %}
+<!-- Hero Section (Social Backup & Digital Sanctuary) -->
+<section class="relative border-b border-[#27272e] bg-gradient-to-b from-[#141418] via-[#0d0d0f] to-[#0d0d0f] pt-12 pb-16 lg:pt-20 lg:pb-24 overflow-hidden">
+  <div class="absolute inset-0 opacity-10 pointer-events-none bg-[radial-gradient(#c5a880_1px,transparent_1px)] [background-size:24px_24px]"></div>
+  <div class="absolute -top-40 right-1/4 w-96 h-96 bg-[#c5a880]/10 rounded-full blur-3xl pointer-events-none"></div>
+
+  <div class="max-w-7xl mx-auto px-6 sm:px-8 relative z-10">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+      
+      <!-- Left Column: Hero Narrative & Social Focus -->
+      <div class="lg:col-span-7 space-y-6">
+        
+        <!-- Social Creator Eyebrow Badge -->
+        <div class="inline-flex items-center gap-3 p-1.5 pr-4 rounded-full border border-[#c5a880]/40 bg-[#18181c]/90 shadow-lg">
+          <img src="/static/img/profile.jpg" alt="Profile" class="w-7 h-7 rounded-full object-cover border border-[#c5a880]">
+          <div class="flex items-center gap-2 text-xs">
+            <span class="font-bold text-[#f4efe6]">@classicartarchive</span>
+            <span class="text-[#c5a880] text-[11px] uppercase tracking-wider">&bull; Official Social Vault</span>
+          </div>
+        </div>
+
+        <!-- Headline -->
+        <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl text-[#f4efe6] font-normal leading-[1.12] tracking-tight">
+          The permanent backup for our <span class="italic text-[#c5a880]">Instagram & Social Archive</span>.
+        </h1>
+
+        <!-- Subtitle -->
+        <p class="text-[#9e9ea7] text-base sm:text-lg leading-relaxed font-light max-w-2xl">
+          Welcome to our digital sanctuary. While social algorithms compress and crop art history, this independent vault preserves every masterpiece in <strong>uncompressed Ultra HD museum resolution</strong> for our community of <strong>{{ stats.instagram_followers_display }} art lovers</strong>.
+        </p>
+
+        <!-- Live Metrics Counter Strip (Automatically Scaled) -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
+          <div class="glass-card p-3.5 rounded-xl border border-[#27272e] bg-[#141418]/80 text-center">
+            <span class="font-display text-xl sm:text-2xl font-bold text-[#c5a880] block">{{ stats.instagram_followers_display }}</span>
+            <span class="text-[11px] text-[#9e9ea7] uppercase tracking-wider">Followers</span>
+          </div>
+          <div class="glass-card p-3.5 rounded-xl border border-[#27272e] bg-[#141418]/80 text-center">
+            <span class="font-display text-xl sm:text-2xl font-bold text-[#f4efe6] block">{{ stats.monthly_reach_display }}</span>
+            <span class="text-[11px] text-[#9e9ea7] uppercase tracking-wider">Monthly Reach</span>
+          </div>
+          <div class="glass-card p-3.5 rounded-xl border border-[#27272e] bg-[#141418]/80 text-center">
+            <span class="font-display text-xl sm:text-2xl font-bold text-emerald-400 block">{{ stats.engagement_rate }}</span>
+            <span class="text-[11px] text-[#9e9ea7] uppercase tracking-wider">Engagement Rate</span>
+          </div>
+          <div class="glass-card p-3.5 rounded-xl border border-[#27272e] bg-[#141418]/80 text-center">
+            <span class="font-display text-xl sm:text-2xl font-bold text-[#f4efe6] block">{{ artworks|length }}</span>
+            <span class="text-[11px] text-[#9e9ea7] uppercase tracking-wider">Masterpieces</span>
+          </div>
+        </div>
+
+        <!-- Social Media Hub Links -->
+        <div class="pt-2 flex flex-wrap items-center gap-3.5">
+          <!-- Instagram CTA -->
+          <a href="https://instagram.com/classicartarchive" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2.5 bg-gradient-to-r from-[#c5a880] to-[#dfc199] text-[#0d0d0f] font-semibold text-xs uppercase tracking-wider px-6 py-3.5 rounded-xl shadow-lg hover:opacity-95 transition-all">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+            </svg>
+            <span>Follow on Instagram ({{ stats.instagram_followers_display }})</span>
+          </a>
+
+          <!-- Facebook CTA -->
+          <a href="https://facebook.com/classicartarchive" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-[#18181c] hover:bg-[#1877f2] text-[#f4efe6] hover:text-white font-semibold text-xs uppercase tracking-wider px-5 py-3.5 rounded-xl border border-[#27272e] transition-all">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+            </svg>
+            <span>Facebook Page</span>
+          </a>
+
+          <!-- Direct Business Contact Email Pill -->
+          <button onclick="copyEmail()" class="inline-flex items-center gap-2 bg-[#141417] hover:border-[#c5a880] text-[#9e9ea7] hover:text-[#f4efe6] text-xs font-mono px-4 py-3.5 rounded-xl border border-[#27272e] transition-all">
+            <svg class="w-4 h-4 text-[#c5a880]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+            <span>{{ business_email }}</span>
+            <span class="text-[10px] uppercase font-sans tracking-widest text-[#c5a880] ml-1">[Copy]</span>
+          </button>
+        </div>
+
+      </div>
+
+      <!-- Right Column: Profile Showcase Card -->
+      <div class="lg:col-span-5">
+        <div class="glass-card rounded-2xl p-7 border border-[#27272e] space-y-6 box-gold-glow relative overflow-hidden">
+          
+          <div class="flex items-center gap-4 border-b border-[#27272e] pb-5">
+            <img src="/static/img/profile.jpg" alt="Classic Art Archive Avatar" class="w-16 h-16 rounded-full object-cover border-2 border-[#c5a880] shadow-xl">
+            <div>
+              <div class="flex items-center gap-1.5">
+                <span class="font-serif text-xl font-semibold text-[#f4efe6]">Classic Art Archive</span>
+                <svg class="w-4 h-4 text-[#c5a880]" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+              </div>
+              <span class="text-xs font-mono text-[#c5a880]">@classicartarchive</span>
+              <span class="block text-[11px] text-[#9e9ea7] mt-0.5">{{ stats.instagram_followers_display }} Followers &bull; Curated Fine Art Vault</span>
+            </div>
+          </div>
+
+          <div class="space-y-3 text-xs text-[#9e9ea7]">
+            <div class="flex items-center justify-between py-1 border-b border-[#1e1e24]">
+              <span class="text-[#5c5c66]">Verified Audience:</span>
+              <span class="text-[#f4efe6] font-mono font-medium">{{ stats.instagram_followers_display }} Followers ({{ stats.monthly_reach_display }} Reach)</span>
+            </div>
+            <div class="flex items-center justify-between py-1 border-b border-[#1e1e24]">
+              <span class="text-[#5c5c66]">Engagement Rate:</span>
+              <span class="text-emerald-400 font-mono font-medium">{{ stats.engagement_rate }} Organic</span>
+            </div>
+            <div class="flex items-center justify-between py-1 border-b border-[#1e1e24]">
+              <span class="text-[#5c5c66]">Digital Scans Quality:</span>
+              <span class="text-[#c5a880] font-mono font-medium">Ultra HD / Uncompressed</span>
+            </div>
+            <div class="flex items-center justify-between py-1">
+              <span class="text-[#5c5c66]">Business Inquiries:</span>
+              <span class="text-[#f4efe6] font-mono">{{ business_email }}</span>
+            </div>
+          </div>
+
+          <div class="pt-2 flex gap-3">
+            <a href="#contact-section" class="w-full text-center text-xs uppercase tracking-widest text-[#0d0d0f] bg-[#c5a880] hover:bg-[#dfc199] font-semibold py-3 rounded-xl transition-colors shadow">
+              Contact Curator
+            </a>
+            <a href="/about" class="w-full text-center text-xs uppercase tracking-widest text-[#f4efe6] bg-[#1a1a1f] hover:bg-[#24242c] font-semibold py-3 rounded-xl border border-[#27272e] transition-colors">
+              Media Kit
+            </a>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Filter & Search Bar Section -->
+<section class="sticky top-20 z-30 bg-[#0d0d0f]/95 backdrop-blur-md border-b border-[#27272e] py-4 transition-all">
+  <div class="max-w-7xl mx-auto px-6 sm:px-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
+    
+    <!-- Period Filters -->
+    <div class="flex items-center gap-2 overflow-x-auto pb-2 md:pb-0 scrollbar-none">
+      <button data-period="all" class="filter-btn active text-xs uppercase tracking-wider px-4 py-2 rounded-full border border-[#27272e] text-[#9e9ea7] hover:text-[#f4efe6] hover:border-[#c5a880] transition-all whitespace-nowrap">
+        All Eras ({{ artworks|length }})
+      </button>
+      {% for period in periods %}
+      <button data-period="{{ period }}" class="filter-btn text-xs uppercase tracking-wider px-4 py-2 rounded-full border border-[#27272e] text-[#9e9ea7] hover:text-[#f4efe6] hover:border-[#c5a880] transition-all whitespace-nowrap">
+        {{ period }}
+      </button>
+      {% endfor %}
+    </div>
+
+    <!-- Search Input -->
+    <div class="relative min-w-[260px] sm:min-w-[320px]">
+      <input type="text" id="art-search" placeholder="Search by master, title, or era..." class="w-full bg-[#18181c] border border-[#27272e] focus:border-[#c5a880] focus:outline-none text-sm text-[#f4efe6] placeholder-[#5c5c66] pl-10 pr-4 py-2 rounded-full transition-colors">
+      <svg class="w-4 h-4 text-[#5c5c66] absolute left-3.5 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+      </svg>
+    </div>
+
+  </div>
+</section>
+
+<!-- Gallery Grid Section with Ultra HD Downloads -->
+<section class="max-w-7xl mx-auto px-6 sm:px-8 py-12 lg:py-16">
+  
+  <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8 pb-4 border-b border-[#27272e]">
+    <div>
+      <h2 class="font-serif text-2xl sm:text-3xl text-[#f4efe6] font-normal">Curated Masterpiece Vault</h2>
+      <p class="text-xs text-[#9e9ea7] mt-1">High-resolution scans with instant preview and full museum master downloads.</p>
+    </div>
+    <div class="flex items-center gap-3">
+      <a href="/download-collection-zip" download="Classic_Art_Archive_Full_Collection_UltraHD.zip" class="inline-flex items-center gap-2 bg-[#c5a880] hover:bg-[#dfc199] text-[#0d0d0f] font-semibold text-xs uppercase tracking-wider px-4 py-2 rounded-lg transition-all shadow-md">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+        <span>Download All (ZIP)</span>
+      </a>
+      <span class="text-xs uppercase tracking-widest text-[#9e9ea7] font-medium hidden md:inline">&bull; {{ artworks|length }} Works</span>
+    </div>
+  </div>
+
+  <div id="artworks-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10">
+    {% for artwork in artworks %}
+    <article class="artwork-card group glass-card rounded-xl overflow-hidden flex flex-col justify-between transition-all duration-300 hover:translate-y-[-4px]" 
+             data-period="{{ artwork.period }}" 
+             data-title="{{ artwork.title }}" 
+             data-artist="{{ artwork.artist }}" 
+             data-slug="{{ artwork.slug }}">
+      
+      <!-- Artwork Image Container -->
+      <div class="artwork-frame relative aspect-[4/3] bg-[#121214] cursor-pointer" onclick="openArtworkModal('{{ artwork.slug }}')">
+        <img src="{{ artwork.thumbnail_url or artwork.image_url }}" 
+             alt="{{ artwork.title }} - {{ artwork.artist }}" 
+             loading="lazy"
+             class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700">
+        
+        <!-- Period Badge overlay -->
+        <div class="absolute top-4 left-4 z-10">
+          <span class="bg-[#0d0d0f]/85 backdrop-blur-sm border border-[#27272e] text-[#c5a880] text-[11px] uppercase tracking-wider font-semibold px-3 py-1 rounded-full">
+            {{ artwork.period }}
+          </span>
+        </div>
+
+        <!-- Ultra HD Badge -->
+        <div class="absolute top-4 right-4 z-10">
+          <span class="bg-[#0d0d0f]/85 backdrop-blur-sm border border-[#c5a880]/30 text-[#f4efe6] text-[10px] uppercase tracking-widest font-mono px-2.5 py-1 rounded-full flex items-center gap-1">
+            <span class="w-1.5 h-1.5 rounded-full bg-[#c5a880]"></span>
+            {{ artwork.resolution or 'Ultra HD' }}
+          </span>
+        </div>
+
+        <!-- Quick View Hover Overlay -->
+        <div class="absolute inset-0 bg-[#0d0d0f]/65 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-3 p-4">
+          <button type="button" onclick="event.stopPropagation(); openArtworkModal('{{ artwork.slug }}')" class="bg-[#f4efe6] text-[#0d0d0f] text-xs font-semibold uppercase tracking-wider px-4 py-2.5 rounded-full shadow-lg hover:bg-[#c5a880] transition-colors">
+            Quick Inspect
+          </button>
+          <a href="/download/{{ artwork.slug }}" download="{{ artwork.download_filename or artwork.slug ~ '.jpg' }}" onclick="event.stopPropagation()" class="bg-[#18181c] border border-[#c5a880] text-[#c5a880] hover:bg-[#c5a880] hover:text-[#0d0d0f] text-xs font-semibold uppercase tracking-wider px-4 py-2.5 rounded-full shadow-lg transition-colors flex items-center gap-1.5">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+            <span>Ultra HD</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Card Details -->
+      <div class="p-6 flex-grow flex flex-col justify-between space-y-4">
+        <div>
+          <div class="flex items-center justify-between text-xs text-[#9e9ea7] mb-1.5">
+            <span class="font-medium tracking-wider uppercase text-[#c5a880]">{{ artwork.artist }}</span>
+            <span class="font-mono">{{ artwork.year }}</span>
+          </div>
+          
+          <h3 class="font-serif text-2xl font-normal text-[#f4efe6] group-hover:text-[#c5a880] transition-colors leading-snug">
+            <a href="/artwork/{{ artwork.slug }}">{{ artwork.title }}</a>
+          </h3>
+          
+          <p class="text-xs text-[#9e9ea7] line-clamp-2 mt-2 leading-relaxed">
+            {{ artwork.description }}
+          </p>
+        </div>
+
+        <!-- Card Footer Info & Download Action -->
+        <div class="pt-4 border-t border-[#27272e] flex items-center justify-between text-xs">
+          <span class="text-[#5c5c66] truncate max-w-[140px]">{{ artwork.location.split(',')[0] }}</span>
+          
+          <div class="flex items-center gap-2">
+            <a href="/download/{{ artwork.slug }}" download="{{ artwork.download_filename or artwork.slug ~ '_UltraHD.jpg' }}" title="Download {{ artwork.title }} in Ultra HD Master ({{ artwork.resolution }})" class="text-[#9e9ea7] hover:text-[#c5a880] transition-colors border border-[#27272e] rounded bg-[#141418] flex items-center gap-1 text-[11px] px-2.5 py-1">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+              <span>Download Ultra HD</span>
+            </a>
+            <a href="/artwork/{{ artwork.slug }}" class="text-[#c5a880] hover:text-[#dfc199] font-medium tracking-wide flex items-center gap-0.5">
+              <span>View</span>
+              <span>&rarr;</span>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+    </article>
+    {% endfor %}
+  </div>
+
+  <!-- Empty Search Result State -->
+  <div id="empty-state" class="hidden py-24 text-center space-y-4">
+    <div class="inline-flex p-4 rounded-full bg-[#18181c] border border-[#27272e] text-[#c5a880]">
+      <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 11a8 8 0 11-16 0 8 8 0 0116 0zM21 21l-4.35-4.35"></path>
+      </svg>
+    </div>
+    <h3 class="font-serif text-2xl text-[#f4efe6]">No Masterpieces Found</h3>
+    <p class="text-sm text-[#9e9ea7] max-w-md mx-auto">
+      No artworks matched your search criteria. Please try another term or reset your period filter.
+    </p>
+  </div>
+
+</section>
+
+<!-- Direct Contact & Business Collaboration Section -->
+<section id="contact-section" class="max-w-7xl mx-auto px-6 sm:px-8 py-16 lg:py-24 border-t border-[#27272e]">
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+    
+    <!-- Left Column: Business Channel Info with Avatar -->
+    <div class="lg:col-span-5 space-y-6">
+      <div class="space-y-3">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[#c5a880]/30 bg-[#18181c] text-[#c5a880] text-xs font-semibold uppercase tracking-widest">
+          Direct Brand & Creator Hub
+        </div>
+        <h2 class="font-serif text-3xl sm:text-4xl text-[#f4efe6] font-normal leading-tight">
+          Collaborate with <span class="italic text-[#c5a880]">Classic Art Archive</span>.
+        </h2>
+        <p class="text-sm text-[#9e9ea7] leading-relaxed">
+          With over <strong>{{ stats.instagram_followers_display }} dedicated art lovers</strong> and <strong>{{ stats.monthly_reach_display }} monthly reach</strong> ({{ stats.engagement_rate }} engagement), we partner with cultural institutions, book publishers, luxury brands, and art galleries.
+        </p>
+      </div>
+
+      <!-- Quick Metrics Summary -->
+      <div class="bg-[#141418] p-5 rounded-xl border border-[#27272e] space-y-3 text-xs">
+        <div class="flex justify-between py-1 border-b border-[#1e1e24]">
+          <span class="text-[#9e9ea7]">Instagram Followers:</span>
+          <span class="text-[#c5a880] font-mono font-bold">{{ stats.instagram_followers_display }}</span>
+        </div>
+        <div class="flex justify-between py-1 border-b border-[#1e1e24]">
+          <span class="text-[#9e9ea7]">Monthly Organic Reach:</span>
+          <span class="text-[#f4efe6] font-mono font-bold">{{ stats.monthly_reach_display }}</span>
+        </div>
+        <div class="flex justify-between py-1 border-b border-[#1e1e24]">
+          <span class="text-[#9e9ea7]">Organic Engagement:</span>
+          <span class="text-emerald-400 font-mono font-bold">{{ stats.engagement_rate }}</span>
+        </div>
+        <div class="flex justify-between py-1">
+          <span class="text-[#9e9ea7]">Official Business Contact:</span>
+          <span class="text-[#c5a880] font-mono">{{ business_email }}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Column: Contact Inquiry Form -->
+    <div class="lg:col-span-7 glass-card p-8 sm:p-10 rounded-2xl border border-[#27272e]">
+      <h3 class="font-serif text-2xl text-[#f4efe6] mb-6">Send an Official Inquiry</h3>
+      
+      <form id="contact-form" class="space-y-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="space-y-1.5">
+            <label class="text-xs uppercase tracking-wider text-[#9e9ea7] font-medium">Your Name / Organization</label>
+            <input type="text" name="name" required placeholder="Lord Kenneth / Gallery" class="w-full bg-[#18181c] border border-[#27272e] focus:border-[#c5a880] focus:outline-none text-sm px-4 py-2.5 rounded-lg text-[#f4efe6] placeholder-[#5c5c66]">
+          </div>
+
+          <div class="space-y-1.5">
+            <label class="text-xs uppercase tracking-wider text-[#9e9ea7] font-medium">Your Email</label>
+            <input type="email" name="email" required placeholder="contact@domain.com" class="w-full bg-[#18181c] border border-[#27272e] focus:border-[#c5a880] focus:outline-none text-sm px-4 py-2.5 rounded-lg text-[#f4efe6] placeholder-[#5c5c66]">
+          </div>
+        </div>
+
+        <div class="space-y-1.5">
+          <label class="text-xs uppercase tracking-wider text-[#9e9ea7] font-medium">Subject / Inquiry Type</label>
+          <select name="subject" class="w-full bg-[#18181c] border border-[#27272e] focus:border-[#c5a880] focus:outline-none text-sm px-4 py-2.5 rounded-lg text-[#f4efe6]">
+            <option value="Instagram Collaboration">Instagram / Social Campaign Collaboration</option>
+            <option value="Media Kit & Pricing">Media Kit & Sponsorship Rates</option>
+            <option value="Ultra HD Scan Request">Ultra HD Master Scan Request</option>
+            <option value="Curatorial Correction">Curatorial & Historical Note</option>
+            <option value="General Inquiry">Other Business Inquiry</option>
+          </select>
+        </div>
+
+        <div class="space-y-1.5">
+          <label class="text-xs uppercase tracking-wider text-[#9e9ea7] font-medium">Message</label>
+          <textarea name="message" rows="4" required placeholder="How can we collaborate with our art archive community?" class="w-full bg-[#18181c] border border-[#27272e] focus:border-[#c5a880] focus:outline-none text-sm px-4 py-2.5 rounded-lg text-[#f4efe6] placeholder-[#5c5c66]"></textarea>
+        </div>
+
+        <button type="submit" class="w-full bg-[#c5a880] hover:bg-[#dfc199] text-[#0d0d0f] font-semibold text-xs uppercase tracking-widest py-3.5 rounded-lg transition-colors shadow-lg">
+          Send Inquiry to {{ business_email }}
+        </button>
+      </form>
+    </div>
+
+  </div>
+</section>
+
+<!-- Quick View Modal (English & Ultra HD Actions) -->
+<div id="artwork-modal" class="modal-backdrop fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 lg:p-10" aria-modal="true" role="dialog">
+  <div id="modal-overlay" class="absolute inset-0 bg-black/85 backdrop-blur-md"></div>
+  
+  <div class="modal-content relative z-10 bg-[#141417] border border-[#27272e] rounded-2xl max-w-5xl w-full max-h-[90vh] overflow-y-auto flex flex-col md:flex-row shadow-2xl">
+    
+    <!-- Close Button -->
+    <button id="close-modal-btn" class="absolute top-4 right-4 z-20 bg-[#1f1f24]/80 text-[#f4efe6] hover:text-[#c5a880] p-2 rounded-full border border-[#27272e] transition-colors" aria-label="Close modal">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+    </button>
+
+    <!-- Modal Artwork Image -->
+    <div class="md:w-1/2 bg-[#09090b] flex items-center justify-center p-6 border-b md:border-b-0 md:border-r border-[#27272e]">
+      <img id="modal-img" src="" alt="Classic Masterpiece" class="max-h-[70vh] w-auto object-contain rounded shadow-lg">
+    </div>
+
+    <!-- Modal Details -->
+    <div class="md:w-1/2 p-8 sm:p-10 flex flex-col justify-between space-y-6">
+      
+      <div class="space-y-4">
+        
+        <div class="space-y-1">
+          <div class="flex items-center gap-3">
+            <span id="modal-period" class="text-xs uppercase tracking-widest text-[#c5a880] font-semibold"></span>
+            <span class="text-xs text-[#5c5c66]">&bull;</span>
+            <span id="modal-year" class="text-xs text-[#9e9ea7] font-mono"></span>
+          </div>
+          <h3 id="modal-title" class="font-serif text-3xl sm:text-4xl font-normal text-[#f4efe6] leading-tight"></h3>
+          <p id="modal-original-title" class="text-sm italic font-serif text-[#9e9ea7]"></p>
+          <p id="modal-artist" class="text-base text-[#c5a880] font-medium pt-1"></p>
+        </div>
+
+        <!-- Metadata Pill Specs -->
+        <div class="grid grid-cols-2 gap-3 py-3 border-y border-[#27272e] text-xs">
+          <div>
+            <span class="text-[#5c5c66] block">Medium:</span>
+            <span id="modal-medium" class="text-[#f4efe6] font-medium"></span>
+          </div>
+          <div>
+            <span class="text-[#5c5c66] block">Dimensions:</span>
+            <span id="modal-dimensions" class="text-[#f4efe6] font-medium"></span>
+          </div>
+          <div class="col-span-2">
+            <span class="text-[#5c5c66] block">Museum / Permanent Collection:</span>
+            <span id="modal-location" class="text-[#f4efe6] font-medium"></span>
+          </div>
+        </div>
+
+        <!-- Description -->
+        <div class="space-y-1.5">
+          <h4 class="text-xs uppercase tracking-widest text-[#9e9ea7] font-semibold">Historical Context</h4>
+          <p id="modal-description" class="text-sm text-[#9e9ea7] leading-relaxed"></p>
+        </div>
+
+        <!-- Analysis -->
+        <div class="space-y-1.5">
+          <h4 class="text-xs uppercase tracking-widest text-[#9e9ea7] font-semibold">Curatorial Analysis</h4>
+          <p id="modal-analysis" class="text-sm text-[#9e9ea7] leading-relaxed font-serif italic text-base"></p>
+        </div>
+
+      </div>
+
+      <!-- Action Links & Download -->
+      <div class="pt-6 border-t border-[#27272e] flex flex-col sm:flex-row items-center justify-between gap-3">
+        <a id="modal-download-btn" href="#" download class="w-full sm:w-auto text-center bg-[#18181c] border border-[#c5a880] hover:bg-[#c5a880] hover:text-[#0d0d0f] text-[#c5a880] font-semibold text-xs uppercase tracking-widest px-5 py-3 rounded-lg transition-colors flex items-center justify-center gap-2 shadow-md">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+          <span>Download Ultra HD</span>
+        </a>
+        <a id="modal-full-link" href="#" class="w-full sm:w-auto text-center bg-[#c5a880] hover:bg-[#dfc199] text-[#0d0d0f] font-semibold text-xs uppercase tracking-widest px-5 py-3 rounded-lg transition-colors shadow-md">
+          View Detail Page &rarr;
+        </a>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+{% endblock %}

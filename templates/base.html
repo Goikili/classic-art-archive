@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Classic Art Archive — Official Social Vault & Ultra HD Gallery{% endblock %}</title>
+  <meta name="description" content="{% block meta_description %}The official digital archive, backup and high-resolution sanctuary for @classicartarchive with {{ stats.instagram_followers_display or '+400,000' }} art lovers.{% endblock %}">
+
+  <!-- Favicon / Profile Icon (Circular) -->
+  <link rel="icon" type="image/png" href="/static/img/favicon.png">
+  <link rel="shortcut icon" href="/static/favicon.ico">
+  <link rel="apple-touch-icon" href="/static/img/favicon.png">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              black: '#0d0d0f',
+              surface: '#141417',
+              card: '#18181c',
+              border: '#27272e',
+              gold: '#c5a880',
+              goldLight: '#e6d5bd',
+              parchment: '#f4efe6',
+              muted: '#9e9ea7'
+            }
+          },
+          fontFamily: {
+            serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+            display: ['"Cinzel"', 'serif'],
+            sans: ['"Plus Jakarta Sans"', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/static/css/custom.css">
+  {% block extra_head %}{% endblock %}
+</head>
+<body class="bg-[#0d0d0f] text-[#f4efe6] antialiased min-h-screen flex flex-col selection:bg-[#c5a880] selection:text-[#0d0d0f]">
+
+  <!-- Top Announcement / Live Social Stats Bar -->
+  <div class="bg-[#141418] border-b border-[#27272e] py-2 px-6 text-xs text-[#9e9ea7]">
+    <div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
+      <div class="flex items-center gap-2.5 flex-wrap">
+        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+        <span class="font-medium text-[#f4efe6]">Official Digital Vault</span>
+        <span class="text-[#5c5c66]">&bull;</span>
+        <a href="https://instagram.com/classicartarchive" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 bg-[#1a1a20] hover:border-[#c5a880] px-2.5 py-0.5 rounded-full border border-[#c5a880]/30 text-[11px] transition-colors">
+          <span class="text-[#c5a880] font-semibold">{{ stats.instagram_followers_display }}</span>
+          <span class="text-[#9e9ea7]">Instagram Community</span>
+        </a>
+        <span class="hidden sm:inline text-[#5c5c66]">&bull;</span>
+        <span class="hidden sm:inline text-[#c5a880] font-medium">{{ stats.monthly_reach_display }} Monthly Reach</span>
+      </div>
+      
+      <div class="flex items-center gap-4 text-[11px] uppercase tracking-wider font-semibold">
+        <a href="mailto:{{ business_email }}" class="text-[#c5a880] hover:text-[#dfc199] flex items-center gap-1 transition-colors">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+          <span class="hidden sm:inline">{{ business_email }}</span>
+          <span class="sm:hidden">Contact</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header / Navigation -->
+  <header class="sticky top-0 z-40 glass-nav transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-6 sm:px-8 h-20 flex items-center justify-between">
+      
+      <!-- Brand Logo with Official Avatar -->
+      <a href="/" class="flex items-center gap-3.5 group">
+        <div class="relative">
+          <img src="/static/img/profile.jpg" alt="Classic Art Archive Avatar" class="w-10 h-10 rounded-full object-cover border border-[#c5a880]/60 group-hover:border-[#c5a880] transition-colors shadow-md">
+          <span class="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-emerald-500 rounded-full border-2 border-[#0d0d0f]"></span>
+        </div>
+        <div class="flex flex-col">
+          <span class="font-display text-base sm:text-lg font-bold tracking-[0.18em] text-[#f4efe6] group-hover:text-[#c5a880] transition-colors">
+            CLASSIC ART ARCHIVE
+          </span>
+          <span class="text-[9px] sm:text-[10px] tracking-[0.25em] text-[#c5a880] uppercase font-medium">
+            Digital Vault &bull; {{ stats.instagram_followers_display }} Community
+          </span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <nav class="hidden md:flex items-center space-x-9 text-sm font-medium tracking-wide">
+        <a href="/" class="transition-colors hover:text-[#c5a880] {% if active_page == 'gallery' %}text-[#c5a880] border-b border-[#c5a880] pb-1{% else %}text-[#9e9ea7]{% endif %}">
+          Ultra HD Gallery
+        </a>
+        <a href="/archive" class="transition-colors hover:text-[#c5a880] {% if active_page == 'archive' %}text-[#c5a880] border-b border-[#c5a880] pb-1{% else %}text-[#9e9ea7]{% endif %}">
+          Chronological Index
+        </a>
+        <a href="/about" class="transition-colors hover:text-[#c5a880] {% if active_page == 'about' %}text-[#c5a880] border-b border-[#c5a880] pb-1{% else %}text-[#9e9ea7]{% endif %}">
+          About & Media Kit
+        </a>
+        <a href="/#contact-section" class="transition-colors hover:text-[#c5a880] text-[#9e9ea7]">
+          Contact
+        </a>
+      </nav>
+
+      <!-- Social Media & Follower Badges -->
+      <div class="hidden md:flex items-center space-x-3">
+        <!-- Live Follower Pill Button -->
+        <a href="https://instagram.com/classicartarchive" target="_blank" rel="noopener noreferrer" title="Follow @classicartarchive on Instagram" class="inline-flex items-center gap-2 text-xs font-semibold text-[#f4efe6] bg-[#18181c] hover:bg-[#c5a880] hover:text-[#0d0d0f] px-4 py-2 rounded-full border border-[#c5a880]/50 transition-all shadow-sm group">
+          <svg class="w-4 h-4 text-[#c5a880] group-hover:text-[#0d0d0f]" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+          </svg>
+          <span class="text-xs uppercase tracking-wider font-bold text-[#c5a880] group-hover:text-[#0d0d0f]">{{ stats.instagram_followers_display }}</span>
+        </a>
+
+        <!-- Facebook Link -->
+        <a href="https://facebook.com/classicartarchive" target="_blank" rel="noopener noreferrer" title="Follow on Facebook" class="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-[#f4efe6] bg-[#18181c] hover:bg-[#1877f2] hover:text-white px-3.5 py-2 rounded-full border border-[#27272e] transition-all shadow-sm">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+          </svg>
+          <span>Facebook</span>
+        </a>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button id="mobile-menu-btn" class="md:hidden p-2 text-[#f4efe6] hover:text-[#c5a880]" aria-label="Toggle Menu">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile Menu Drawer -->
+    <div id="mobile-menu" class="hidden md:hidden border-b border-[#27272e] bg-[#141417]/98 px-6 py-6 space-y-4">
+      <div class="flex items-center gap-3 pb-3 border-b border-[#27272e]">
+        <img src="/static/img/profile.jpg" alt="Profile" class="w-10 h-10 rounded-full object-cover border border-[#c5a880]">
+        <div>
+          <span class="block text-sm font-semibold text-[#f4efe6]">@classicartarchive</span>
+          <span class="block text-xs text-[#c5a880]">{{ stats.instagram_followers_display }} Followers</span>
+        </div>
+      </div>
+      <a href="/" class="block text-base font-medium {% if active_page == 'gallery' %}text-[#c5a880]{% else %}text-[#9e9ea7]{% endif %}">Ultra HD Gallery</a>
+      <a href="/archive" class="block text-base font-medium {% if active_page == 'archive' %}text-[#c5a880]{% else %}text-[#9e9ea7]{% endif %}">Chronological Index</a>
+      <a href="/about" class="block text-base font-medium {% if active_page == 'about' %}text-[#c5a880]{% else %}text-[#9e9ea7]{% endif %}">About & Media Kit</a>
+      <a href="/#contact-section" class="block text-base font-medium text-[#9e9ea7]">Contact Inquiries</a>
+      
+      <div class="pt-4 border-t border-[#27272e] flex flex-wrap gap-3">
+        <a href="https://instagram.com/classicartarchive" target="_blank" class="inline-flex items-center gap-2 text-xs uppercase tracking-wider text-[#c5a880] border border-[#c5a880]/40 px-4 py-2 rounded-full">
+          <span>Instagram ({{ stats.instagram_followers_display }}) &rarr;</span>
+        </a>
+        <a href="https://facebook.com/classicartarchive" target="_blank" class="inline-flex items-center gap-2 text-xs uppercase tracking-wider text-[#f4efe6] border border-[#27272e] px-4 py-2 rounded-full">
+          <span>Facebook &rarr;</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Block -->
+  <main class="flex-grow">
+    {% block content %}{% endblock %}
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-[#101013] border-t border-[#27272e] mt-24">
+    <div class="max-w-7xl mx-auto px-6 sm:px-8 py-16 lg:py-20 grid grid-cols-1 md:grid-cols-12 gap-12">
+      
+      <!-- Brand & Mission with Avatar -->
+      <div class="md:col-span-5 space-y-4">
+        <div class="flex items-center gap-3.5">
+          <img src="/static/img/profile.jpg" alt="Classic Art Archive" class="w-12 h-12 rounded-full object-cover border border-[#c5a880]/60 shadow-lg">
+          <div>
+            <span class="font-display text-lg tracking-[0.18em] font-bold text-[#f4efe6] block">
+              CLASSIC ART ARCHIVE
+            </span>
+            <span class="text-xs text-[#c5a880] font-mono">@classicartarchive &bull; {{ stats.instagram_followers_display }} Followers</span>
+          </div>
+        </div>
+        <p class="text-sm leading-relaxed text-[#9e9ea7] max-w-md font-serif italic text-base">
+          "The permanent digital sanctuary and high-resolution backup for our social art curation channels on Instagram & Facebook. Preserving world heritage in Ultra HD for over {{ stats.instagram_followers_display }} art lovers."
+        </p>
+        <div class="pt-2 flex flex-wrap items-center gap-3 text-xs tracking-wider text-[#c5a880]">
+          <span class="bg-[#18181c] px-3 py-1 rounded-full border border-[#27272e]">{{ stats.instagram_followers_display }} Community</span>
+          <span>&bull;</span>
+          <span class="bg-[#18181c] px-3 py-1 rounded-full border border-[#27272e]">{{ stats.monthly_reach_display }} Impressions</span>
+          <span>&bull;</span>
+          <span class="bg-[#18181c] px-3 py-1 rounded-full border border-[#27272e] text-emerald-400">{{ stats.engagement_rate }} Engagement</span>
+        </div>
+      </div>
+
+      <!-- Quick Nav & Socials -->
+      <div class="md:col-span-3 space-y-4">
+        <h4 class="text-xs uppercase tracking-[0.25em] text-[#c5a880] font-semibold">Social Channels & Links</h4>
+        <ul class="space-y-2.5 text-sm text-[#9e9ea7]">
+          <li><a href="https://instagram.com/classicartarchive" target="_blank" class="hover:text-[#c5a880] flex items-center gap-2 transition-colors"><span>&rarr;</span> Instagram ({{ stats.instagram_followers_display }})</a></li>
+          <li><a href="https://facebook.com/classicartarchive" target="_blank" class="hover:text-[#1877f2] flex items-center gap-2 transition-colors"><span>&rarr;</span> Facebook Community</a></li>
+          <li><a href="/" class="hover:text-[#f4efe6] transition-colors">Ultra HD Master Gallery (20 Paintings)</a></li>
+          <li><a href="/archive" class="hover:text-[#f4efe6] transition-colors">Chronological Index</a></li>
+          <li><a href="/about" class="hover:text-[#f4efe6] transition-colors">Media Kit & Analytics</a></li>
+        </ul>
+      </div>
+
+      <!-- Direct Contact & Business Box -->
+      <div class="md:col-span-4 space-y-4">
+        <h4 class="text-xs uppercase tracking-[0.25em] text-[#c5a880] font-semibold">Business Inquiries & Contact</h4>
+        <p class="text-xs text-[#9e9ea7] leading-relaxed">
+          For brand partnerships, high-res archive licensing, or curatorial collaborations, reach out directly:
+        </p>
+        <div class="bg-[#18181c] border border-[#27272e] p-3 rounded-xl flex items-center justify-between">
+          <a href="mailto:{{ business_email }}" class="text-xs font-mono text-[#c5a880] hover:underline truncate">
+            {{ business_email }}
+          </a>
+          <button onclick="copyEmail()" class="text-xs bg-[#24242c] hover:bg-[#c5a880] hover:text-[#0d0d0f] px-2.5 py-1 rounded font-medium transition-colors" title="Copy email address">
+            Copy
+          </button>
+        </div>
+        <form class="newsletter-form flex gap-2 pt-1">
+          <input type="email" placeholder="Your email for Gazette..." required class="bg-[#18181c] border border-[#27272e] focus:border-[#c5a880] focus:outline-none text-xs px-3 py-2 rounded-lg w-full text-[#f4efe6] placeholder-[#5c5c66]">
+          <button type="submit" class="bg-[#c5a880] hover:bg-[#dfc199] text-[#0d0d0f] font-semibold text-xs uppercase tracking-wider px-4 py-2 rounded-lg transition-colors whitespace-nowrap">
+            Join
+          </button>
+        </form>
+      </div>
+
+    </div>
+
+    <!-- Copyright Sub-footer -->
+    <div class="border-t border-[#1e1e24] py-6 text-xs text-[#5c5c66]">
+      <div class="max-w-7xl mx-auto px-6 sm:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <span>&copy; 2026 Classic Art Archive. Official backup for @classicartarchive ({{ stats.instagram_followers_display }} community). Masterworks belong to the Universal Public Domain.</span>
+        <span class="italic font-serif text-sm text-[#9e9ea7]">Ars longa, vita brevis.</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="/static/js/app.js"></script>
+  {% block extra_scripts %}{% endblock %}
+</body>
+</html>

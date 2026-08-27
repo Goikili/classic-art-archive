@@ -1,0 +1,167 @@
+{% extends "base.html" %}
+
+{% block title %}About & Media Kit — Classic Art Archive{% endblock %}
+{% block meta_description %}Official Media Kit, metrics, and archival mission for @classicartarchive. Over {{ stats.instagram_followers_display or '400K+' }} art lovers and {{ stats.monthly_reach_display or '6M+' }} monthly reach.{% endblock %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto px-6 sm:px-8 py-16 lg:py-24 space-y-16">
+  
+  <!-- Header Title -->
+  <div class="text-center space-y-4 max-w-2xl mx-auto">
+    <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-[#c5a880]/40 bg-[#18181c] text-[#c5a880] text-xs font-semibold tracking-widest uppercase">
+      The Archival Mission & Media Kit
+    </div>
+    <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl text-[#f4efe6] font-normal leading-tight">
+      A digital sanctuary for <span class="italic text-[#c5a880]">timeless fine art</span>.
+    </h1>
+    <p class="text-[#9e9ea7] text-base leading-relaxed font-light">
+      The official high-resolution backup repository, companion, and business partnership hub for <strong>@classicartarchive</strong> with <strong>{{ stats.instagram_followers_display or '400K+' }} global followers</strong>.
+    </p>
+  </div>
+
+  <!-- Featured Editorial Quotation -->
+  <div class="bg-[#141418] border-y sm:border sm:rounded-2xl border-[#27272e] p-8 sm:p-12 relative overflow-hidden">
+    <div class="absolute -right-8 -bottom-8 opacity-5 text-8xl font-serif select-none pointer-events-none text-[#c5a880]">
+      &ldquo;
+    </div>
+    <blockquote class="font-serif italic text-xl sm:text-2xl text-[#f4efe6] leading-relaxed text-center max-w-2xl mx-auto">
+      "Social algorithms come and go, but the transcendent brushwork of the Old Masters belongs to eternity. We safeguard and share it in its purest resolution."
+    </blockquote>
+    <div class="text-center mt-6 text-xs uppercase tracking-widest text-[#c5a880] font-semibold">
+      — Curatorial Statement &bull; @classicartarchive
+    </div>
+  </div>
+
+  <!-- Live Audience & Verified Media Kit Metrics -->
+  <div class="space-y-6">
+    <div class="flex items-center justify-between pb-3 border-b border-[#27272e]">
+      <div>
+        <span class="text-xs uppercase tracking-widest text-[#c5a880] font-semibold">Official Media Kit</span>
+        <h2 class="font-serif text-2xl sm:text-3xl text-[#f4efe6] font-normal">Audience & Reach Analytics</h2>
+      </div>
+      <button onclick="openStatsModal()" class="text-xs text-[#c5a880] border border-[#c5a880]/30 hover:border-[#c5a880] px-3 py-1.5 rounded-lg bg-[#18181c] transition-colors">
+        Live Sync
+      </button>
+    </div>
+
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+      <div class="glass-card p-5 rounded-xl border border-[#27272e] bg-[#141418] space-y-1">
+        <span class="text-xs uppercase tracking-wider text-[#9e9ea7]">Followers</span>
+        <span class="font-display text-2xl sm:text-3xl font-bold text-[#c5a880] block">{{ stats.instagram_followers_display or '400,000+' }}</span>
+        <span class="text-[11px] text-[#5c5c66]">Instagram Community</span>
+      </div>
+
+      <div class="glass-card p-5 rounded-xl border border-[#27272e] bg-[#141418] space-y-1">
+        <span class="text-xs uppercase tracking-wider text-[#9e9ea7]">Monthly Reach</span>
+        <span class="font-display text-2xl sm:text-3xl font-bold text-[#f4efe6] block">{{ stats.monthly_reach_display or '+6M' }}</span>
+        <span class="text-[11px] text-[#5c5c66]">Global Impressions</span>
+      </div>
+
+      <div class="glass-card p-5 rounded-xl border border-[#27272e] bg-[#141418] space-y-1">
+        <span class="text-xs uppercase tracking-wider text-[#9e9ea7]">Engagement</span>
+        <span class="font-display text-2xl sm:text-3xl font-bold text-[#c5a880] block">{{ stats.engagement_rate or '3.0%' }}</span>
+        <span class="text-[11px] text-[#5c5c66]">High Organic Interactions</span>
+      </div>
+
+      <div class="glass-card p-5 rounded-xl border border-[#27272e] bg-[#141418] space-y-1">
+        <span class="text-xs uppercase tracking-wider text-[#9e9ea7]">Demographics</span>
+        <span class="font-display text-2xl sm:text-3xl font-bold text-[#f4efe6] block">{{ stats.demographics_men or '61%' }} / {{ stats.demographics_us or '19%' }}</span>
+        <span class="text-[11px] text-[#5c5c66]">Core US & EU Audience</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Narrative Articles -->
+  <div class="space-y-12 text-[#9e9ea7] leading-relaxed text-base">
+    
+    <div class="space-y-4">
+      <h2 class="font-serif text-2xl sm:text-3xl text-[#f4efe6] font-normal">
+        1. Why We Built this Digital Backup
+      </h2>
+      <p>
+        <strong>Classic Art Archive</strong> was founded to solve a fundamental problem of modern digital curation. While millions enjoy our daily explorations on <strong>Instagram (@classicartarchive)</strong> and <strong>Facebook</strong>, social media platforms inevitably downscale images, enforce restrictive aspect ratios, and subject educational content to erratic algorithm shifts.
+      </p>
+      <p>
+        This web portal serves as our <strong>independent permanent vault</strong>: every featured painting is documented with its original historical context and linked directly to uncompressed <strong>Ultra HD scans</strong> sourced from Wikimedia Commons and world-class museum open access collections.
+      </p>
+    </div>
+
+    <!-- Partnership & Media Kit Packages -->
+    <div class="space-y-6 pt-4">
+      <div class="space-y-2">
+        <span class="text-xs uppercase tracking-widest text-[#c5a880] font-semibold">Partnership Services</span>
+        <h2 class="font-serif text-2xl sm:text-3xl text-[#f4efe6] font-normal">Collaboration Packages</h2>
+        <p class="text-xs text-[#9e9ea7]">Custom integrations tailored for art institutions, publishers, luxury brands, and galleries.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="glass-card p-6 rounded-xl border border-[#27272e] bg-[#141418] space-y-4 flex flex-col justify-between">
+          <div class="space-y-2">
+            <span class="text-xs uppercase tracking-widest text-[#c5a880] font-semibold">Feed Placement</span>
+            <h3 class="font-serif text-xl text-[#f4efe6]">Instagram Post</h3>
+            <p class="text-xs text-[#9e9ea7]">A single, high-quality post seamlessly integrating your brand into our curated aesthetic feed.</p>
+          </div>
+          <div class="pt-4 border-t border-[#27272e] flex items-baseline justify-between">
+            <span class="font-serif text-2xl text-[#c5a880] font-bold">$650</span>
+            <a href="mailto:{{ business_email }}?subject=Instagram%20Post%20Inquiry" class="text-xs uppercase tracking-wider text-[#f4efe6] hover:text-[#c5a880]">Inquire &rarr;</a>
+          </div>
+        </div>
+
+        <div class="glass-card p-6 rounded-xl border border-[#27272e] bg-[#141418] space-y-4 flex flex-col justify-between">
+          <div class="space-y-2">
+            <span class="text-xs uppercase tracking-widest text-[#c5a880] font-semibold">Story Sequence</span>
+            <h3 class="font-serif text-xl text-[#f4efe6]">Sponsored Stories</h3>
+            <p class="text-xs text-[#9e9ea7]">A sequence of 3–5 engaging stories to tell a narrative, using interactive stickers and swipe links.</p>
+          </div>
+          <div class="pt-4 border-t border-[#27272e] flex items-baseline justify-between">
+            <span class="font-serif text-2xl text-[#c5a880] font-bold">$450</span>
+            <a href="mailto:{{ business_email }}?subject=Sponsored%20Story%20Inquiry" class="text-xs uppercase tracking-wider text-[#f4efe6] hover:text-[#c5a880]">Inquire &rarr;</a>
+          </div>
+        </div>
+
+        <div class="glass-card p-6 rounded-xl border border-[#c5a880]/40 bg-[#16161a] space-y-4 flex flex-col justify-between">
+          <div class="space-y-2">
+            <span class="text-xs uppercase tracking-widest text-[#c5a880] font-semibold">Full Campaign</span>
+            <h3 class="font-serif text-xl text-[#f4efe6]">Custom Bundle</h3>
+            <p class="text-xs text-[#9e9ea7]">A tailored package including a permanent feed post, dedicated reel, and story series for maximum impact.</p>
+          </div>
+          <div class="pt-4 border-t border-[#27272e] flex items-baseline justify-between">
+            <span class="font-serif text-2xl text-[#c5a880] font-bold">$950</span>
+            <a href="mailto:{{ business_email }}?subject=Custom%20Bundle%20Inquiry" class="text-xs uppercase tracking-wider text-[#c5a880] hover:text-[#dfc199]">Inquire &rarr;</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Social & Contact Hub Box -->
+    <div class="bg-gradient-to-r from-[#18181c] to-[#121215] border border-[#c5a880]/30 rounded-2xl p-8 sm:p-10 space-y-6">
+      <div class="space-y-2">
+        <span class="text-xs uppercase tracking-widest text-[#c5a880] font-semibold">Official Channels</span>
+        <h3 class="font-serif text-2xl sm:text-3xl text-[#f4efe6]">Connect Across Channels</h3>
+        <p class="text-xs text-[#9e9ea7]">
+          Follow our daily posts on Instagram ({{ stats.instagram_followers_display or '400K+' }} community) or send direct inquiries.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
+        <a href="https://instagram.com/classicartarchive" target="_blank" class="bg-[#1e1e24] hover:bg-[#c5a880] hover:text-[#0d0d0f] p-4 rounded-xl text-center transition-all border border-[#27272e] flex flex-col items-center justify-center gap-1.5 group">
+          <span class="font-semibold text-xs uppercase tracking-wider">Instagram</span>
+          <span class="text-[11px] text-[#c5a880] group-hover:text-[#0d0d0f]">{{ stats.instagram_followers_display or '400K+' }} Followers</span>
+        </a>
+
+        <a href="https://facebook.com/classicartarchive" target="_blank" class="bg-[#1e1e24] hover:bg-[#1877f2] hover:text-white p-4 rounded-xl text-center transition-all border border-[#27272e] flex flex-col items-center justify-center gap-1.5">
+          <span class="font-semibold text-xs uppercase tracking-wider">Facebook</span>
+          <span class="text-[11px] text-[#9e9ea7]">Classic Art Community</span>
+        </a>
+
+        <a href="mailto:{{ business_email }}" class="bg-[#1e1e24] hover:bg-[#c5a880] hover:text-[#0d0d0f] p-4 rounded-xl text-center transition-all border border-[#27272e] flex flex-col items-center justify-center gap-1.5 group">
+          <span class="font-semibold text-xs uppercase tracking-wider">Business Inbox</span>
+          <span class="text-[11px] text-[#9e9ea7] group-hover:text-[#0d0d0f]">{{ business_email }}</span>
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+{% endblock %}

@@ -1,0 +1,142 @@
+/* Classic Art Archive - Custom Stylesheet */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --bg-main: #0d0d0f;
+  --bg-surface: #141417;
+  --bg-card: #18181c;
+  --border-subtle: #27272e;
+  --border-gold: rgba(197, 168, 128, 0.3);
+  --gold-accent: #c5a880;
+  --gold-light: #e6d5bd;
+  --gold-hover: #dfc199;
+  --text-parchment: #f4efe6;
+  --text-muted: #9e9ea7;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background-color: var(--bg-main);
+  color: var(--text-parchment);
+  overflow-x: hidden;
+  selection-background-color: var(--gold-accent);
+}
+
+::selection {
+  background-color: #c5a880;
+  color: #0d0d0f;
+}
+
+.font-serif-title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+}
+
+.font-display {
+  font-family: 'Cinzel', serif;
+  letter-spacing: 0.08em;
+}
+
+/* Subtle gold glow */
+.gold-glow {
+  text-shadow: 0 0 20px rgba(197, 168, 128, 0.25);
+}
+
+.box-gold-glow {
+  box-shadow: 0 10px 30px -10px rgba(197, 168, 128, 0.15);
+}
+
+/* Glassmorphism */
+.glass-nav {
+  background: rgba(13, 13, 15, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.glass-card {
+  background: rgba(24, 24, 28, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border-subtle);
+}
+
+.glass-card:hover {
+  border-color: var(--border-gold);
+}
+
+/* Artwork frame effect */
+.artwork-frame {
+  position: relative;
+  overflow: hidden;
+  background-color: #121214;
+}
+
+.artwork-frame img {
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), filter 0.5s ease;
+}
+
+.artwork-card:hover .artwork-frame img {
+  transform: scale(1.04);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0d0d0f;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #27272e;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #c5a880;
+}
+
+/* Modal Animations */
+.modal-backdrop {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.modal-backdrop.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-content {
+  transform: scale(0.96) translateY(20px);
+  opacity: 0;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease;
+}
+
+.modal-backdrop.active .modal-content {
+  transform: scale(1) translateY(0);
+  opacity: 1;
+}
+
+/* Filter buttons */
+.filter-btn.active {
+  background-color: #c5a880;
+  color: #0d0d0f;
+  font-weight: 600;
+  border-color: #c5a880;
+}
+
+/* Toast notifications */
+#toast {
+  transform: translateY(100px);
+  opacity: 0;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+}
+
+#toast.show {
+  transform: translateY(0);
+  opacity: 1;
+}

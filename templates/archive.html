@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+
+{% block title %}Chronological & Master Index — Classic Art Archive{% endblock %}
+{% block meta_description %}Complete chronological registry and index of all curated masterpieces in our digital vault with direct Ultra HD downloads.{% endblock %}
+
+{% block content %}
+<div class="max-w-7xl mx-auto px-6 sm:px-8 py-12 lg:py-20 space-y-12">
+  
+  <!-- Header -->
+  <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-6">
+    <div class="space-y-4 max-w-2xl">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-[#c5a880]/40 bg-[#18181c] text-[#c5a880] text-xs font-semibold tracking-widest uppercase">
+        The Complete Collection
+      </div>
+      <h1 class="font-serif text-4xl sm:text-5xl text-[#f4efe6] font-normal leading-tight">
+        Archive <span class="italic text-[#c5a880]">Index</span>
+      </h1>
+      <p class="text-[#9e9ea7] text-sm sm:text-base leading-relaxed">
+        Explore the full chronological record of our curated collection. Every masterwork includes provenance data and direct links to full-resolution museum scans.
+      </p>
+    </div>
+    <div>
+      <a href="/download-collection-zip" download="Classic_Art_Archive_Full_Collection_UltraHD.zip" class="inline-flex items-center gap-2 bg-[#c5a880] hover:bg-[#dfc199] text-[#0d0d0f] font-semibold text-xs uppercase tracking-wider px-5 py-3 rounded-xl transition-all shadow-lg whitespace-nowrap">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+        <span>Download Full Collection (ZIP)</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Archive Table Container -->
+  <div class="glass-card rounded-2xl border border-[#27272e] overflow-hidden">
+    
+    <div class="overflow-x-auto">
+      <table class="w-full text-left text-sm">
+        <thead class="bg-[#101013] text-xs uppercase tracking-widest text-[#c5a880] border-b border-[#27272e]">
+          <tr>
+            <th class="py-4 px-6 font-semibold">Scan Preview</th>
+            <th class="py-4 px-6 font-semibold">Masterpiece</th>
+            <th class="py-4 px-6 font-semibold">Master Artist</th>
+            <th class="py-4 px-6 font-semibold">Era / Period</th>
+            <th class="py-4 px-6 font-semibold">Date</th>
+            <th class="py-4 px-6 font-semibold">Museum Collection</th>
+            <th class="py-4 px-6 font-semibold text-right">Ultra HD Master</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-[#1e1e24] text-[#9e9ea7]">
+          {% for artwork in artworks %}
+          <tr class="hover:bg-[#18181c]/60 transition-colors">
+            
+            <!-- Thumbnail -->
+            <td class="py-3 px-6 whitespace-nowrap">
+              <a href="/artwork/{{ artwork.slug }}" class="block w-14 h-14 rounded-lg overflow-hidden bg-[#121214] border border-[#27272e] hover:border-[#c5a880] transition-colors">
+                <img src="{{ artwork.thumbnail_url or artwork.image_url }}" alt="{{ artwork.title }}" class="w-full h-full object-cover">
+              </a>
+            </td>
+
+            <!-- Title -->
+            <td class="py-3 px-6">
+              <a href="/artwork/{{ artwork.slug }}" class="font-serif text-base text-[#f4efe6] hover:text-[#c5a880] transition-colors block">
+                {{ artwork.title }}
+              </a>
+              {% if artwork.original_title %}
+              <span class="text-xs italic text-[#5c5c66] block">{{ artwork.original_title }}</span>
+              {% endif %}
+            </td>
+
+            <!-- Artist -->
+            <td class="py-3 px-6 whitespace-nowrap font-medium text-[#c5a880]">
+              {{ artwork.artist }}
+            </td>
+
+            <!-- Period -->
+            <td class="py-3 px-6 whitespace-nowrap">
+              <span class="text-xs px-2.5 py-1 rounded-full bg-[#18181c] border border-[#27272e] text-[#f4efe6]">
+                {{ artwork.period }}
+              </span>
+            </td>
+
+            <!-- Year -->
+            <td class="py-3 px-6 whitespace-nowrap text-xs font-mono">
+              {{ artwork.year }}
+            </td>
+
+            <!-- Location -->
+            <td class="py-3 px-6 text-xs text-[#5c5c66]">
+              {{ artwork.location }}
+            </td>
+
+            <!-- Ultra HD Download & Detail Actions -->
+            <td class="py-3 px-6 whitespace-nowrap text-right space-x-2">
+              <a href="/download/{{ artwork.slug }}" download="{{ artwork.download_filename or artwork.slug ~ '_UltraHD.jpg' }}" title="Direct Ultra HD Download ({{ artwork.resolution }})" class="inline-flex items-center gap-1 text-[11px] uppercase tracking-wider text-[#9e9ea7] hover:text-[#c5a880] border border-[#27272e] hover:border-[#c5a880] bg-[#141418] px-2.5 py-1 rounded transition-colors font-medium">
+                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                <span>Ultra HD Master</span>
+              </a>
+              <a href="/artwork/{{ artwork.slug }}" class="inline-flex items-center gap-1 text-xs uppercase tracking-wider text-[#c5a880] hover:text-[#dfc199] font-semibold">
+                <span>View</span>
+                <span>&rarr;</span>
+              </a>
+            </td>
+
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+</div>
+{% endblock %}
