@@ -102,6 +102,13 @@ def get_unique_periods(artworks: List[dict]) -> List[str]:
     return periods
 
 
+# --- Health Check Route ---
+
+@app.api_route('/health', methods=['GET', 'HEAD'])
+async def health_check():
+    return {'status': 'ok'}
+
+
 # --- HTML Frontend Routes ---
 
 @app.get("/", response_class=HTMLResponse)
