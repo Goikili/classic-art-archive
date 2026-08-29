@@ -11,7 +11,7 @@ DATA_FILE = BASE_DIR / "data" / "artworks.json"
 MASTERS_DIR = BASE_DIR / "static" / "img" / "masters"
 ARTWORKS_DIR = BASE_DIR / "static" / "img" / "artworks"
 
-USER_AGENT = "ClassicArtArchiveBot/2.2 (https://classicartarchive.org; contact: artarchivebusiness@gmail.com)"
+USER_AGENT = "ClassicArtArchiveBot/2.2 (https://classicartarchive.org; contact: contact@classicartarchive.com)"
 HEADERS = {"User-Agent": USER_AGENT}
 
 missing_targets = [

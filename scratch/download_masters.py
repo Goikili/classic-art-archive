@@ -12,7 +12,7 @@ DATA_FILE = BASE_DIR / "data" / "artworks.json"
 MASTERS_DIR = BASE_DIR / "static" / "img" / "masters"
 MASTERS_DIR.mkdir(parents=True, exist_ok=True)
 
-USER_AGENT = "ClassicArtArchive/2.2 (https://classicartarchive.org; contact: artarchivebusiness@gmail.com)"
+USER_AGENT = "ClassicArtArchive/2.2 (https://classicartarchive.org; contact: contact@classicartarchive.com)"
 
 with open(DATA_FILE, "r", encoding="utf-8") as f:
     artworks = json.load(f)

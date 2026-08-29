@@ -16,7 +16,7 @@ ARTWORKS_DIR = BASE_DIR / "static" / "img" / "artworks"
 MASTERS_DIR.mkdir(parents=True, exist_ok=True)
 ARTWORKS_DIR.mkdir(parents=True, exist_ok=True)
 
-USER_AGENT = "ClassicArtArchiveBot/2.2 (https://classicartarchive.org; contact: artarchivebusiness@gmail.com)"
+USER_AGENT = "ClassicArtArchiveBot/2.2 (https://classicartarchive.org; contact: contact@classicartarchive.com)"
 HEADERS = {"User-Agent": USER_AGENT}
 
 new_artworks = [

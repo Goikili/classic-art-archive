@@ -64,7 +64,7 @@ def compute_dynamic_stats(followers: int = 400000) -> dict:
         "handle": "@classicartarchive",
         "instagram_url": "https://instagram.com/classicartarchive",
         "facebook_url": "https://facebook.com/classicartarchive",
-        "business_email": "artarchivebusiness@gmail.com",
+        "business_email": "contact@classicartarchive.com",
         "last_synced": "Official Live Sync",
         "sync_source": "Dynamic Creator Engine (Engagement 5.0%)"
     }
@@ -131,7 +131,7 @@ async def home_gallery(request: Request, period: Optional[str] = None):
             "selected_period": period or "all",
             "active_page": "gallery",
             "stats": stats,
-            "business_email": stats.get("business_email", "artarchivebusiness@gmail.com")
+            "business_email": stats.get("business_email", "contact@classicartarchive.com")
         }
     )
 
@@ -159,7 +159,7 @@ async def artwork_detail(request: Request, slug: str):
             "related_artworks": related,
             "active_page": "gallery",
             "stats": stats,
-            "business_email": stats.get("business_email", "artarchivebusiness@gmail.com")
+            "business_email": stats.get("business_email", "contact@classicartarchive.com")
         }
     )
 
@@ -182,7 +182,7 @@ async def archive_index(request: Request, period: Optional[str] = None):
             "selected_period": period or "all",
             "active_page": "archive",
             "stats": stats,
-            "business_email": stats.get("business_email", "artarchivebusiness@gmail.com")
+            "business_email": stats.get("business_email", "contact@classicartarchive.com")
         }
     )
 
@@ -196,7 +196,7 @@ async def about_manifesto(request: Request):
         context={
             "active_page": "about",
             "stats": stats,
-            "business_email": stats.get("business_email", "artarchivebusiness@gmail.com")
+            "business_email": stats.get("business_email", "contact@classicartarchive.com")
         }
     )
 
@@ -335,7 +335,7 @@ async def api_contact_inquiry(
         "email": email.strip(),
         "subject": subject.strip(),
         "message": message.strip(),
-        "recipient": "artarchivebusiness@gmail.com",
+        "recipient": "contact@classicartarchive.com",
         "timestamp": datetime.now().isoformat()
     }
     try:
@@ -346,7 +346,7 @@ async def api_contact_inquiry(
 
     return {
         "status": "success",
-        "message": "Your message has been received! We will reply from artarchivebusiness@gmail.com shortly."
+        "message": "Your message has been received! We will reply from contact@classicartarchive.com shortly."
     }
 
 

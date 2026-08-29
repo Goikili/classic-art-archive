@@ -295,11 +295,11 @@ function setupStatsModal() {
 
 // Copy email address to clipboard
 function copyEmail() {
-  const email = 'artarchivebusiness@gmail.com';
+  const email = 'contact@classicartarchive.com';
   navigator.clipboard.writeText(email).then(() => {
-    showToast('Copied email: artarchivebusiness@gmail.com');
+    showToast('Copied email: contact@classicartarchive.com');
   }).catch(() => {
-    showToast('Email: artarchivebusiness@gmail.com');
+    showToast('Email: contact@classicartarchive.com');
   });
 }
 
@@ -358,7 +358,7 @@ function setupContactForm() {
         showToast(data.message || 'Message sent! We will reply to your email.');
         form.reset();
       } else {
-        showToast(data.detail || 'Could not send message. Please email artarchivebusiness@gmail.com directly.');
+        showToast(data.detail || 'Could not send message. Please email contact@classicartarchive.com directly.');
       }
     } catch (err) {
       showToast('Thank you! We will reply to your message soon.');
