@@ -3,8 +3,11 @@ from datetime import datetime
 from pathlib import Path
 from typing import List, Optional
 
+import os
+
 from fastapi import FastAPI, Request, HTTPException, Form
-from fastapi.responses import HTMLResponse, JSONResponse, RedirectResponse
+from fastapi.middleware.httpsredirect import HTTPSRedirectMiddleware
+from fastapi.responses import HTMLResponse, JSONResponse, RedirectResponse, Response
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 
@@ -28,6 +31,20 @@ R2_BASE_URL = "https://pub-7ef67ec2a62b4ee9b2eb09ef674cfcb7.r2.dev"
 # Mount Static Files and Templates
 app.mount("/static", StaticFiles(directory=str(STATIC_DIR)), name="static")
 templates = Jinja2Templates(directory=str(TEMPLATES_DIR))
+
+
+@app.middleware("http")
+async def enforce_https(request: Request, call_next):
+    """
+    Redirect HTTP -> HTTPS in production.
+    Railway (and most proxies) set the X-Forwarded-Proto header.
+    We only redirect when that header is 'http', so local dev is unaffected.
+    """
+    forwarded_proto = request.headers.get("x-forwarded-proto", "")
+    if forwarded_proto == "http":
+        url = request.url.replace(scheme="https")
+        return RedirectResponse(url=str(url), status_code=301)
+    return await call_next(request)
 
 
 def format_number(n: int) -> str:
