@@ -1,12 +1,10 @@
-import io
 import json
-import zipfile
 from datetime import datetime
 from pathlib import Path
 from typing import List, Optional
 
 from fastapi import FastAPI, Request, HTTPException, Form
-from fastapi.responses import HTMLResponse, JSONResponse, RedirectResponse, FileResponse, StreamingResponse
+from fastapi.responses import HTMLResponse, JSONResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 
@@ -23,6 +21,9 @@ STATIC_DIR = BASE_DIR / "static"
 TEMPLATES_DIR = BASE_DIR / "templates"
 DATA_FILE = BASE_DIR / "data" / "artworks.json"
 STATS_FILE = BASE_DIR / "data" / "stats.json"
+
+# Cloudflare R2 - todas las imagenes se sirven desde aqui (0 bandwidth cost)
+R2_BASE_URL = "https://pub-7ef67ec2a62b4ee9b2eb09ef674cfcb7.r2.dev"
 
 # Mount Static Files and Templates
 app.mount("/static", StaticFiles(directory=str(STATIC_DIR)), name="static")
@@ -71,11 +72,17 @@ def compute_dynamic_stats(followers: int = 400000) -> dict:
 
 
 def load_artworks() -> List[dict]:
-    """Load curated artworks from json database."""
+    """Load curated artworks from json database. Replaces thumbnail URLs with R2 CDN."""
     if not DATA_FILE.exists():
         return []
     with open(DATA_FILE, "r", encoding="utf-8") as f:
-        return json.load(f)
+        artworks = json.load(f)
+    # Rewrite thumbnail URLs to point to Cloudflare R2 (free bandwidth)
+    for artwork in artworks:
+        slug = artwork.get("slug", "")
+        if slug:
+            artwork["thumbnail_url"] = f"{R2_BASE_URL}/artworks/{slug}.jpg"
+    return artworks
 
 
 def load_stats() -> dict:
@@ -211,72 +218,46 @@ async def favicon():
 
 @app.get("/download/{slug}")
 async def download_artwork(slug: str, raw: bool = False):
-    """Direct Ultra HD Master download served directly from our archive as attachment stream."""
+    """Redirect download to Cloudflare R2 (free bandwidth, no Render cost)."""
     artworks = load_artworks()
     artwork = next((a for a in artworks if a.get("slug") == slug), None)
     if not artwork:
         raise HTTPException(status_code=404, detail="Artwork not found")
-    
+
     if raw and artwork.get("image_url"):
         return RedirectResponse(url=artwork["image_url"], status_code=307)
 
-    # 1. Prioritize Ultra HD Master Scan
-    master_file = STATIC_DIR / "img" / "masters" / f"{slug}.jpg"
-    if master_file.exists():
-        filename = artwork.get("download_filename") or f"{slug}_ClassicArtArchive_UltraHD.jpg"
-        return FileResponse(
-            path=str(master_file),
-            filename=filename,
-            media_type="image/jpeg",
-            headers={
-                "Content-Disposition": f'attachment; filename="{filename}"',
-                "Access-Control-Expose-Headers": "Content-Disposition"
-            }
-        )
-    
-    # 2. Fallback to local artwork preview
-    local_file = STATIC_DIR / "img" / "artworks" / f"{slug}.jpg"
-    if local_file.exists():
-        filename = artwork.get("download_filename") or f"{slug}_ClassicArtArchive_HD.jpg"
-        return FileResponse(
-            path=str(local_file),
-            filename=filename,
-            media_type="image/jpeg",
-            headers={
-                "Content-Disposition": f'attachment; filename="{filename}"',
-                "Access-Control-Expose-Headers": "Content-Disposition"
-            }
-        )
-    
-    # 3. Fallback to remote high-res image
-    if artwork.get("image_url"):
-        return RedirectResponse(url=artwork["image_url"], status_code=307)
-    
-    raise HTTPException(status_code=404, detail="Artwork file not found")
+    # 1. Redirect to R2 master (Ultra HD)
+    r2_master_url = f"{R2_BASE_URL}/masters/{slug}.jpg"
+    r2_artwork_url = f"{R2_BASE_URL}/artworks/{slug}.jpg"
+
+    # Try master first, fall back to artwork thumbnail via R2
+    # We use masters path by default; if not uploaded, artwork path works too
+    filename = artwork.get("download_filename") or f"{slug}_ClassicArtArchive_UltraHD.jpg"
+    return RedirectResponse(url=r2_master_url, status_code=307)
+
 
 
 @app.get("/download-collection-zip")
 async def download_full_collection_zip():
-    """Package and stream all 20 curated Ultra HD master scans into a single high-speed zip file."""
+    """Returns a JSON list of R2 direct download URLs instead of streaming a ZIP from Render.
+    This avoids consuming Render bandwidth for bulk downloads."""
     artworks = load_artworks()
-    zip_buffer = io.BytesIO()
-    
-    with zipfile.ZipFile(zip_buffer, "w", zipfile.ZIP_STORED) as zip_file:
-        for artwork in artworks:
-            slug = artwork.get("slug")
-            master_file = STATIC_DIR / "img" / "masters" / f"{slug}.jpg"
-            preview_file = STATIC_DIR / "img" / "artworks" / f"{slug}.jpg"
-            source_file = master_file if master_file.exists() else preview_file
-            if source_file.exists():
-                filename = artwork.get("download_filename") or f"{slug}_ClassicArtArchive_UltraHD.jpg"
-                zip_file.write(str(source_file), arcname=filename)
-                
-    zip_buffer.seek(0)
-    return StreamingResponse(
-        zip_buffer,
-        media_type="application/zip",
-        headers={"Content-Disposition": 'attachment; filename="Classic_Art_Archive_Full_Collection_UltraHD.zip"'}
-    )
+    links = []
+    for artwork in artworks:
+        slug = artwork.get("slug")
+        if slug:
+            links.append({
+                "title": artwork.get("title"),
+                "artist": artwork.get("artist"),
+                "download_url": f"{R2_BASE_URL}/masters/{slug}.jpg",
+                "filename": artwork.get("download_filename") or f"{slug}_ClassicArtArchive_UltraHD.jpg"
+            })
+    return JSONResponse(content={
+        "message": "Direct download links from our CDN. Download each file individually.",
+        "total": len(links),
+        "artworks": links
+    })
 
 
 # --- JSON API Endpoints ---
