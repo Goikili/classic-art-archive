@@ -41,13 +41,13 @@ def format_number(n: int) -> str:
     return f"+{n}"
 
 
-def compute_dynamic_stats(followers: int = 400000) -> dict:
+def compute_dynamic_stats(followers: int = 500000) -> dict:
     """
     Calculate all audience reach, impressions, and engagement metrics
     automatically based on the follower count, with fixed 5.0% engagement.
     """
-    monthly_reach = int(round(followers * 15.0))
-    monthly_impressions = int(round(followers * 22.5))
+    monthly_reach = int(round(followers * 24.0))
+    monthly_impressions = int(round(followers * 36.0))
     monthly_interactions = int(round(followers * 0.05 * 30))
 
     return {
@@ -87,14 +87,14 @@ def load_artworks() -> List[dict]:
 
 def load_stats() -> dict:
     """Load stats and compute dynamic metrics automatically."""
-    followers = 400000
+    followers = 500000
     if STATS_FILE.exists():
         try:
             with open(STATS_FILE, "r", encoding="utf-8") as f:
                 saved = json.load(f)
-                followers = int(saved.get("instagram_followers", 400000))
+                followers = int(saved.get("instagram_followers", 500000))
         except Exception:
-            followers = 400000
+            followers = 500000
 
     return compute_dynamic_stats(followers)
 
