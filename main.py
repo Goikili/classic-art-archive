@@ -37,9 +37,13 @@ templates = Jinja2Templates(directory=str(TEMPLATES_DIR))
 async def enforce_https(request: Request, call_next):
     """
     Redirect HTTP -> HTTPS in production.
-    Railway (and most proxies) set the X-Forwarded-Proto header.
+    Proxies (Render, Cloudflare, etc.) set the X-Forwarded-Proto header.
     We only redirect when that header is 'http', so local dev is unaffected.
+    Exempt /health so uptime monitors and platform health checks always succeed directly.
     """
+    if request.url.path == "/health":
+        return await call_next(request)
+
     forwarded_proto = request.headers.get("x-forwarded-proto", "")
     if forwarded_proto == "http":
         url = request.url.replace(scheme="https")
